@@ -229,26 +229,31 @@
     if (!self.imageView.image){
         return;
     }
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:@"分享"
-                                  delegate:self
-                                  cancelButtonTitle:@"取消"
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:@"分享到微信", nil];
-    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-    [actionSheet showInView:self.view];
+    
+    ShareWxViewController *share = [[ShareWxViewController alloc]initWithNibName:nil bundle:nil];
+    share.image = self.imageView.image;
+    share.hidesBottomBarWhenPushed =YES;
+    [self.navigationController pushViewController:share animated:YES];
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+//                                  initWithTitle:@"分享"
+//                                  delegate:self
+//                                  cancelButtonTitle:@"取消"
+//                                  destructiveButtonTitle:nil
+//                                  otherButtonTitles:@"分享到微信", nil];
+//    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+//    [actionSheet showInView:self.view];
     
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        ShareWxViewController *share = [[ShareWxViewController alloc]initWithNibName:nil bundle:nil];
-        share.image = self.imageView.image;
-        share.hidesBottomBarWhenPushed =YES;
-        [self.navigationController pushViewController:share animated:YES];
-    }
-}
+//-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (buttonIndex == 0) {
+//        ShareWxViewController *share = [[ShareWxViewController alloc]initWithNibName:nil bundle:nil];
+//        share.image = self.imageView.image;
+//        share.hidesBottomBarWhenPushed =YES;
+//        [self.navigationController pushViewController:share animated:YES];
+//    }
+//}
 
 
 #pragma mark Camera View Delegate Methods

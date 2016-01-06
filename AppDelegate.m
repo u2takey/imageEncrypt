@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import "MMProgressHUD.h"
-#import "UMSocial.h"
-#import "UMSocialWechatHandler.h"
 #import "AFNetworking.h"
 
 @interface AppDelegate ()
@@ -22,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [UMSocialData setAppKey:@"562222e167e58eb03b0000bc"];
+
     [MMProgressHUD setDisplayStyle:MMProgressHUDDisplayStylePlain];
     [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleFade];
     [[MMProgressHUD sharedHUD] setOverlayMode:MMProgressHUDWindowOverlayModeGradient];
@@ -36,7 +34,6 @@
     #define kWeixinSDKIdentifier @"wx68f0a3b9a20696c1"
     #define kWeixinSDKSecretKey @"a4cc1be6753ce263f703436eff884d11"
     
-    [UMSocialWechatHandler setWXAppId:kWeixinSDKIdentifier appSecret:kWeixinSDKSecretKey url:nil];
     
     return YES;
 }
@@ -50,14 +47,14 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    return  [UMSocialSnsService handleOpenURL:url];
+    return YES;
 }
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    return  [UMSocialSnsService handleOpenURL:url];
+    return  YES;
 }
 
 

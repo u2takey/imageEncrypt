@@ -9,7 +9,6 @@
 #import "ShareWxViewController.h"
 #import "QNUploadManager.h"
 #import "QNUploadOption.h"
-#import "UMSocial.h"
 #import "MMProgressHUD.h"
 #import "AppDelegate.h"
 #import "UIImage+Resize.h"
@@ -102,21 +101,21 @@ NSString* urlencode(NSString *src){
             [MMProgressHUD  dismissWithError:NSLocalizedString(@"sharingFail", nil)];
         }else{
            
-            NSString *postUrl = [NSString stringWithFormat:
-                                 @"http://p2p2.sinaapp.com/post?user_id=%@&title=%@&pic_url=%@",
-                                 urlencode(user_id), urlencode(title), urlencode(pic_url)];
-        
-            [UMSocialData defaultData].extConfig.wechatSessionData.url = postUrl;
-            [UMSocialData defaultData].extConfig.wechatTimelineData.url = postUrl;
+//            NSString *postUrl = [NSString stringWithFormat:
+//                                 @"http://p2p2.sinaapp.com/post?user_id=%@&title=%@&pic_url=%@",
+//                                 urlencode(user_id), urlencode(title), urlencode(pic_url)];
+//        
+//            [UMSocialData defaultData].extConfig.wechatSessionData.url = postUrl;
+//            [UMSocialData defaultData].extConfig.wechatTimelineData.url = postUrl;
 //            [UMSocialData defaultData].extConfig.wechatSessionData.title = self.textView.text;
 //            [UMSocialData defaultData].extConfig.wechatTimelineData.title = self.textView.text;
             
-            [UMSocialSnsService presentSnsIconSheetView:self
-                                                 appKey:@"562222e167e58eb03b0000bc"
-                                              shareText:self.textView.text
-                                             shareImage:self.icon
-                                        shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite]
-                                               delegate:self];
+//            [UMSocialSnsService presentSnsIconSheetView:self
+//                                                 appKey:@"562222e167e58eb03b0000bc"
+//                                              shareText:self.textView.text
+//                                             shareImage:self.icon
+//                                        shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite]
+//                                               delegate:self];
         
      
             
@@ -135,7 +134,8 @@ NSString* urlencode(NSString *src){
 //                                                                 }
 //                                                             }];
             
-            [MMProgressHUD dismiss];
+            [MMProgressHUD dismissWithSuccess:NSLocalizedString(@"sharingSuccess", nil)];
+            [self.navigationController popViewControllerAnimated:YES];
         }
        
     } ];
@@ -144,16 +144,16 @@ NSString* urlencode(NSString *src){
 }
 
 
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-    [MMProgressHUD dismiss];
-    //根据`responseCode`得到发送结果,如果分享成功
-    if(response.responseCode == UMSResponseCodeSuccess)
-    {
-        //得到分享到的微博平台名
-        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
-    }
-}
+//-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+//{
+//    [MMProgressHUD dismiss];
+//    //根据`responseCode`得到发送结果,如果分享成功
+//    if(response.responseCode == UMSResponseCodeSuccess)
+//    {
+//        //得到分享到的微博平台名
+//        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+//    }
+//}
 
 
 
